@@ -1,8 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World!';
+  constructor(private readonly config: ConfigService) {}
+  
+  getProjectName(): string {
+    return this.config.get('name') || 'NEST JS TASK 1'
   }
 }
